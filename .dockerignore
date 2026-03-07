@@ -1,0 +1,12 @@
+.git
+.venv
+__pycache__
+*.pyc
+logs/
+data/
+notebooks/
+.env
+.python-version
+Dockerfile
+.dockerignore
+*.pth

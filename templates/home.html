@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}MagicEdit AI - Home{% endblock title %}
+
+{% block styles %}
+<style>
+    .hero {
+        padding: 6rem 0;
+        text-align: center;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .hero h2 {
+        font-size: 5rem;
+        font-weight: 900;
+        line-height: 0.95;
+        margin-bottom: 2rem;
+        background: linear-gradient(135deg, #fff 30%, #6366f1 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.06em;
+    }
+
+    .hero p {
+        font-size: 1.4rem;
+        margin-bottom: 3.5rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.5;
+    }
+
+    .hero-btns {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+    }
+
+    .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2.5rem;
+        margin-top: 6rem;
+    }
+
+    .feature-card {
+        padding: 3rem;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 400px;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 150px;
+        height: 150px;
+        background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .feature-icon {
+        width: 4rem;
+        height: 4rem;
+        background: rgba(99, 102, 241, 0.08);
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+        color: var(--primary);
+        font-size: 2rem;
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
+    }
+    
+    .feature-card h3 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+        .hero h2 { font-size: 3.5rem; }
+        .hero-btns { flex-direction: column; }
+    }
+</style>
+{% endblock styles %}
+
+{% block content %}
+<div class="hero">
+    <h2>Beyond Ordinary <br> Editing.</h2>
+    <p>Harness the power of professional-grade AI tools to generate stunning emojis and remove backgrounds with surgical precision.</p>
+    <div class="hero-btns">
+        <a href="/emoji" class="btn btn-primary">Try Emoji Gen</a>
+        <a href="/bg" class="btn" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text-main);">Try BG Remover</a>
+    </div>
+</div>
+
+<div class="features">
+    <div class="card feature-card">
+        <div>
+            <div class="feature-icon">✨</div>
+            <h3>Generative Emoji</h3>
+            <p>Push the boundaries of expression. Create one-of-a-kind emojis using our bespoke latent diffusion model tuned for facial semantics.</p>
+        </div>
+        <a href="/emoji" class="btn btn-primary">Start Generating</a>
+    </div>
+
+    <div class="card feature-card" style="border-color: rgba(236, 72, 153, 0.2);">
+        <div>
+            <div class="feature-icon" style="color: var(--accent); background: rgba(236, 72, 153, 0.08);">✂️</div>
+            <h3>Smart BG Remove</h3>
+            <p>Precision matting in seconds. Our deep learning engine segments foreground objects from complex backgrounds with neural accuracy.</p>
+        </div>
+        <a href="/bg" class="btn btn-primary" style="background: linear-gradient(135deg, var(--accent), #d946ef); box-shadow: 0 4px 15px -3px rgba(236, 72, 153, 0.4);">Deep Scan Image</a>
+    </div>
+</div>
+{% endblock content %}

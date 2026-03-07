@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}BG Remover - MagicEdit AI{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="/static/bg.css">
+<style>
+    .upload-container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .upload-section.highlight {
+        border-color: var(--primary);
+        background: rgba(99, 102, 241, 0.1);
+        transform: scale(1.02);
+    }
+</style>
+{% endblock styles %}
+
+{% block content %}
+<div class="upload-container">
+    <div style="text-align: center; margin-bottom: 4rem;">
+        <h1 style="font-size: 3rem; margin-bottom: 1rem;">Neural Background Removal</h1>
+        <p style="font-size: 1.1rem;">Upload an image to segment the subject instantly.</p>
+    </div>
+
+    <div class="upload-section card" id="drop-zone" style="cursor: pointer; padding: 4rem 2rem;">
+        <div class="upload-icon">📸</div>
+        <h3 style="margin-bottom: 0.5rem;">Click to select or drag image here</h3>
+        <p style="font-size: 0.9rem; margin-bottom: 2rem;">PNG, JPG up to 10MB</p>
+        
+        <button class="btn btn-primary" onclick="event.stopPropagation(); document.getElementById('file-input').click();">
+            Select Files
+        </button>
+        
+        <input type="file" id="file-input" hidden accept="image/*" onchange="handleFileUpload(event)">
+    </div>
+
+    <div id="results" class="preview-grid" style="display: none; margin-top: 4rem;">
+        <div class="preview-card card">
+            <h3>Original</h3>
+            <div class="image-wrapper">
+                <img id="original-preview">
+            </div>
+        </div>
+        <div class="preview-card card">
+            <h3>Processed Result</h3>
+            <div id="loading" class="loading-overlay">
+                <div class="spinner"></div>
+            </div>
+            <div class="image-wrapper">
+                <img id="result-preview">
+            </div>
+            <div style="margin-top: 1.5rem; text-align: right;">
+                <a id="download-bg" class="btn btn-primary">Save to PNG</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script src="/static/bg.js"></script>
+<script>
+    // Explicitly handle click on the drop zone to trigger file input
+    document.getElementById('drop-zone').addEventListener('click', function(e) {
+        // Only trigger if the target wasn't the button itself (which already has stopPropagation)
+        if (e.target.tagName !== 'BUTTON') {
+            document.getElementById('file-input').click();
+        }
+    });
+</script>
+{% endblock scripts %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Emoji Gen - MagicEdit AI{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="/static/emoji.css">
+{% endblock styles %}
+
+{% block content %}
+<div class="generator-container">
+    <div style="margin-bottom: 3rem;">
+        <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">Latent Emoji Forge</h1>
+        <p style="font-size: 1.15rem; max-width: 500px; margin: 0 auto;">Synthesize high-fidelity emojis using our specialized neural architecture.</p>
+    </div>
+    
+    <div id="emoji-display" class="emoji-display">
+        <div id="placeholder" style="color: var(--text-muted); padding: 2rem;">
+            Ready to generate magic...
+        </div>
+        <img id="emoji-result" style="display: none;">
+    </div>
+
+    <div class="controls">
+        <button id="generate-btn" class="btn btn-primary" onclick="generateEmoji()">
+            <span>✨</span> Generate Forge
+        </button>
+        <button id="download-btn" class="btn" style="display: none; background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text-main);" onclick="downloadEmoji()">
+            Download Asset
+        </button>
+    </div>
+
+    <div class="history-section">
+        <h3 style="text-align: left; font-size: 1.25rem;">Session History</h3>
+        <div class="history-gallery" id="history">
+            <!-- Items injected via JS -->
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+<script src="/static/emoji.js"></script>
+{% endblock scripts %}
