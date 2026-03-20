@@ -1,7 +1,7 @@
 import sys
 import traceback
 from functools import wraps
-from exception import MyException
+from src.exceptions import MyException
 
 def asyncHandler(fn):
     @wraps(fn)
