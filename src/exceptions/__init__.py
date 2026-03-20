@@ -1,9 +1,12 @@
 import sys
 import logging
 
-def error_message_detail(error: Exception, error_detail: sys) -> str:
-   
+def error_message_detail(error:Exception,error_detail:sys)->str:
     _, _, exc_tb = error_detail.exc_info()
+
+    # Walk the traceback to find the actual source of the error
+    while exc_tb.tb_next is not None:
+        exc_tb = exc_tb.tb_next
 
     # Get the file name where the exception occurred
     file_name = exc_tb.tb_frame.f_code.co_filename
@@ -16,7 +19,6 @@ def error_message_detail(error: Exception, error_detail: sys) -> str:
     logging.error(error_message)
     
     return error_message
-
 
 class MyException(Exception):
     def __init__(self, error_message: str, error_detail: sys):
